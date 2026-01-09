@@ -1,0 +1,10 @@
+# runtime traces
+traces/
+app/trace_*.json
+
+# python cache
+__pycache__/
+*.pyc
+
+# misc
+.env
