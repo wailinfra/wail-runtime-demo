@@ -15,7 +15,7 @@ st.set_page_config(
 )
 
 st.title("WAIL Runtime Demo")
-st.write("Enter a prompt and observe runtime-level execution signals.")
+st.write("Enter a prompt to measure token timing and detect latency deviations during a model call.")
 
 
 # -------------------------------------------------
