@@ -1,10 +1,14 @@
 import time
 import json
+import os
 import streamlit as st
 
 from wail_runtime import WailRuntime
 
 
+# -------------------------------------------------
+# PAGE CONFIG
+# -------------------------------------------------
 st.set_page_config(
     page_title="WAIL Runtime Demo",
     layout="centered"
@@ -13,9 +17,17 @@ st.set_page_config(
 st.title("WAIL Runtime Demo")
 st.write("Enter a prompt and observe runtime-level execution signals.")
 
+
+# -------------------------------------------------
+# INPUT
+# -------------------------------------------------
 prompt = st.text_area("Prompt", height=120)
 run = st.button("Run")
 
+
+# -------------------------------------------------
+# EXECUTION
+# -------------------------------------------------
 if run and prompt.strip():
     st.divider()
     st.subheader("Execution")
@@ -46,9 +58,10 @@ if run and prompt.strip():
 
     st.success("Execution completed")
 
-    # -------------------------------
+
+    # -------------------------------------------------
     # RUNTIME BEHAVIOUR SIGNALS
-    # -------------------------------
+    # -------------------------------------------------
     st.divider()
     st.subheader("Captured Runtime Behaviour Signals")
 
@@ -64,10 +77,14 @@ if run and prompt.strip():
 
     st.caption("Signals derived from a single execution (demo mode)")
 
-    # -------------------------------
-    # DOWNLOAD TRACE
-    # -------------------------------
+
+    # -------------------------------------------------
+    # DOWNLOAD TRACE (SAFE FOR DOCKER / RENDER)
+    # -------------------------------------------------
+    os.makedirs("traces", exist_ok=True)
+
     trace_file = f"traces/trace_{trace.execution_id}.json"
+
     with open(trace_file, "w", encoding="utf-8") as f:
         json.dump(trace.to_dict(), f, indent=2)
 
@@ -78,6 +95,7 @@ if run and prompt.strip():
             file_name=f"trace_{trace.execution_id}.json",
             mime="application/json"
         )
+
 
 elif run:
     st.warning("Please enter a prompt.")
