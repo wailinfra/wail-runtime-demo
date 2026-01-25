@@ -1,3 +1,7 @@
+⚠️ This repository contains experimental, opinionated runtime interpretations.
+It does not represent WAIL v1 behavior, guarantees, or scope.
+
+
 # WAIL Runtime Demo
 
 This repository contains a runnable demo of WAIL, a post-inference runtime layer for AI systems.
@@ -7,7 +11,7 @@ WAIL operates after model inference, observing and structuring execution-level s
 This demo is intentionally minimal and designed to demonstrate:
 - runtime execution tracing
 - token-level observation
-- latency anomaly detection
+- experimental runtime deviation heuristics (demo-only)
 - reproducible execution artifacts
 
 ---
@@ -18,11 +22,23 @@ When you run the demo and submit a prompt:
 - a runtime execution is started
 - tokens are observed sequentially
 - execution timing is tracked in real time
-- latency anomalies are detected during execution
+- runtime deviations are flagged using experimental heuristics
 - a structured execution trace is generated as a JSON artifact
 
 The model output itself is not evaluated or judged.  
 WAIL observes how the model executes, not what it says.
+
+---
+
+### Important Scope Note
+
+Any flags, labels, or UI messages shown in this demo are:
+- experimental
+- heuristic
+- derived for demonstration purposes only
+- not part of WAIL v1
+
+WAIL v1 produces runtime evidence, not judgments.
 
 ---
 
@@ -66,7 +82,7 @@ Each execution generates a JSON file containing:
 - execution ID
 - timestamps
 - token observation events
-- anomaly signals
+- exploratory runtime flags (non-V1)
 - execution summary
 
 These artifacts are machine-readable, auditable, and comparable across runs.
